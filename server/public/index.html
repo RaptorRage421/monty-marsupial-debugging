@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Koalla Holla</title>
+    <script src="./vendors/sweetalert.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="../client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="vendors/bootstrap.css">
+    <link rel="stylesheet" href="vendors/bootstrap.css.map">
+  </head>
+
+  <body>
+    <header class="hdr">
+      <img src="images/koala.png" class="icon koalacon flex" />
+      <div class="hdr-text-div">
+        <h1 class="titleHeader">Koala Holla</h1>
+        <h3 class="titleHeader">1976 Llama Comma Drive</h2>
+
+          <h3 class="titleHeader">Walla Walla, WA</h2>
+      </div>
+
+    </header>
+    <hr class="hr-class">
+    <form id="addKoala">
+      <h2>Add Koala</h2>
+      <input type="text" id="nameIn" value="" placeholder="Name">
+      <input type="text" id="ageIn" value="" placeholder="Age">
+      <input type="text" id="colorIn" value="" placeholder="Color">
+      <input type="text" id="notesIn" value="" placeholder="Notes">
+      <input type="submit" id="addButton" class="btn btn-success" ondblclick="createKoala(event)" value="Add Koala"/>
+    </form>
+    <hr class="hr-class">
+
+    <section class="tablebox">
+      <h3>All Koalas</h2>
+        <table class="text-center koala-table">
+          <thead>
+            <tr>
+              <th class="th-c">Name</th>
+              <th class="th-c">Age</th>
+              <th class="th-c">Favorite Color</th>
+              <th class="th-c">Ready for Transfer</th>
+              <th class="th-c">Notes</th>
+              <th> </th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody id="koala-list">
+          </tbody>
+        </table>
+    </section>
+  </body>
+
+</html>

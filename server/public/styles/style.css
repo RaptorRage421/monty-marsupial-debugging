@@ -1,0 +1,81 @@
+header {
+    background-image: url("https://images.pexels.com/photos/794512/pexels-photo-794512.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+
+td {
+    padding: 10px;
+    
+}
+
+h1{
+    text-decoration: underline;
+    
+}
+
+.hr-class {
+    border-top: 10px solid #8c8b8b;
+   
+}
+
+.koalaTable {
+    width: 100%;
+}
+
+th {
+    
+    font-size: large;
+}
+
+.koalacon {
+    width: 30%;
+    padding: 0.5em;
+    display: inline;
+}
+
+.hdr{
+    display: flex;
+    padding: 1em;
+    background-color: lightgrey;
+}
+
+.hdr-text-div{
+    display: flexbox;
+    margin-top: 5em;
+}
+
+.hdr-text {
+    display: flex;
+    margin-top: 1em;
+}
+#addKoala{
+    margin: 1em;
+}
+
+.tablebox{
+    margin: 2em;
+}
+
+.th-c {
+    font-size: larger;
+    padding: 2em;
+    text-decoration: underline;
+}
+
+h3 {
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+.titleHeader {
+    background-color: rgba(99, 95, 95, 0.8);    
+    color: lightgray;
+}
+
+td {
+    text-align: center;;
+}
+
+table .form-switch .form-check-input {
+    margin: 0 auto;
+}
