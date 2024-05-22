@@ -1,7 +1,7 @@
 -- do these datatypes make sense?
 CREATE TABLE "koalas" (
 	"id" SERIAL PRIMARY KEY,
-	"name" INT NOT NULL,
+	"name" VARCHAR(30) NOT NULL,
 	"color" VARCHAR(20) NOT NULL,
 	"age" INT,
 	"readyToTransfer" BOOLEAN,
@@ -10,7 +10,7 @@ CREATE TABLE "koalas" (
 
 -- look closely at the order of things!
 INSERT INTO "koalas" 
-	("color", "name", "age", "readyToTransfer", "notes") 
+	("name", "color", "age", "readyToTransfer", "notes") 
 VALUES 
 	('Scotty', 'Red', 4, TRUE, 'Born in Guatemala'), 
 	('Jean', 'Green', 5, TRUE, 'Allergic to lots of lava'), 

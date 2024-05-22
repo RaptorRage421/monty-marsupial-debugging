@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 // GET
 koalaRouter.get('/', (req, res) => {
     const sqlQuery = `
-        SELECT * FROM "koala" 
+        SELECT * FROM "koalas" 
         ORDER BY "name";
     `;
     pool.query(sqlQuery)
@@ -43,20 +43,20 @@ koalaRouter.post('/', (req, res) => {
 });
 
 // PUT
-koalaRouter.put('/:koalaId', (req, res) => {
+koalaRouter.put('/:id', (req, res) => {
     const koalaId = req.params.id;
     console.log(`PUT /${koalaId}`, req.body);
 
     const sqlQuery = `
         UPDATE "koalas" 
-        SET "readyToTransfer"=$1
-        WHERE id=$2;
+        SET "readyToTransfer"=$2
+        WHERE "id"=$1;
     `;
     const sqlParams = [koalaId, req.body.readyToTransfer];
 
     pool.query(sqlQuery, sqlParams)
         .then(response => {
-            console.log(`PUT /koalas/${id} succeeded!`);
+            console.log(`PUT /koalas/${koalaId} succeeded!`);
         })
         .catch(err => {
             console.log('PUT /koalas/:id failed', err);
@@ -65,10 +65,11 @@ koalaRouter.put('/:koalaId', (req, res) => {
 });
 
 // DELETE
-koalaRouter.delete('/koalas/:id', (req, res) => {
+koalaRouter.delete('/:id', (req, res) => {
     const koalaId = req.params.id;
     const sqlQuery = `
-        DELETE FROM koalas;
+        DELETE FROM koalas
+        WHERE "id"=$1;
     `;
 
     pool.query(sqlQuery, [koalaId])

@@ -1,6 +1,6 @@
 console.log('🐨 👺');
 
-function onBready() {
+function onReady() {
   // load existing koalas on page load
   getKoalas();
 }
@@ -9,11 +9,15 @@ onReady();
 
 function toggleReadyToTransfer(event) {
   let readyToTransfer = event.currentTarget.checked;
-  let koalaId = event.currentTarget.closest('td').getAttribute('data-id');
+  let koalaId = event.currentTarget.closest('tr').getAttribute('data-id');
+  console.log("readyto transfer", readyToTransfer)
+  console.log('koalaId = ', koalaId)
+
   
   axios({
     method: 'PUT',
     url: `/koalas/${koalaId}`,
+    data: {readyToTransfer}
   })
   .then(() => {
     console.log('Ready for transfer');
@@ -52,14 +56,14 @@ function createKoala(event) {
     name: nameIn.value,
     age: ageIn.value,
     color: colorIn.value,
-    readyForTransfer: 'not ready',
-    description: notesIn.value,
+    readyForTransfer: 'false',
+    notes: notesIn.value,
   };
   
   axios({
-    method: 'CREATE',
+    method: 'POST',
     url: '/koalas',
-    data: newKoala,
+    data: koalaToSend
   }).then(function (response) {
     nameIn.value = ''
     ageIn.value = ''
@@ -73,7 +77,7 @@ function createKoala(event) {
 function deleteKoala(event) {
   console.log('in deleteKoala')
   let koalaId = event.currentTarget.closest('tr').getAttribute('data-id');
-  
+  console.log("koalaID", koalaId)
   axios({
     method: 'DELETE',
     url: `/koalas/${koalaId}`
@@ -95,18 +99,19 @@ function getKoalas() {
     method: 'GET',
     url: '/koalas'
   }).then(function(response) {
-    renderKoalas(response);
+    renderKoalas(response.data);
   }).catch(function (error) {
     console.log('error in GET on client.js', error);
   });
 }
 
 function renderKoalas(koalas) {
-  let koalaList = document.getElementById('.koala-list');
+  console.log("koalas: ", koalas)
+  let koalaList = document.getElementById('koala-list');
   koalaList.innerHTML = '';
 
   for (let koala of koalas) {
-    let koala = koalas[i];
+    
     console.log('in render koalas', koala);
     
     koalaList.innerHTML += (`
@@ -120,13 +125,13 @@ function renderKoalas(koalas) {
             class="form-check-input ready_to_transfer_toggle" 
             type="checkbox"
             ${koala.readyToTransfer ? 'checked' : ''}
-            onclick="deleteKoala(event)"
+            onclick="toggleReadyToTransfer(event)"
             />
           </div>
         </td>
-        <td>${koala.description}</td>
+        <td>${koala.notes}</td>
         <td>
-          <button onclick="toggleReadyToTransfer(event)" class="deleteBtn btn btn-danger">
+          <button onclick="deleteKoala(event)" class="deleteBtn btn btn-danger">
           Delete
           </button>
         </td>

@@ -14,5 +14,5 @@ app.use('/koalas', koalaRouter)
 
 const PORT = 5001;
 app.listen(PORT, () => {
-  console.log(`MONTY WUZ HERE http://localhost:5000`);
+  console.log(`Connected on Port: ${PORT}`);
 });
